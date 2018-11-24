@@ -47,11 +47,18 @@ table {
 	border-spacing: 0;
 }
 #container {
-    width: 700px;
-    height: 700px;
-    margin: 120px 250px;
-
+    width: 960px;
+    height: 960px;
+	margin: 70px 250px;
+	box-sizing:border-box; 
 }
+/* Border Box + no border container to fit to perfect size */
 .filled {
     background-color: black;
+}
+#reset {
+	padding: 5px;
+	position: absolute;
+	left: 450px;
+	top: 30px;
 }

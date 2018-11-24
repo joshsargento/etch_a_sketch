@@ -8,31 +8,58 @@
 
 <body>
 
+<button id="reset">reset</button> 
 <div id="container"> </div>
 
 <script>
-    a = 0;
 
     function fill(e) {
         e.target.classList.add('filled');
-        console.log(e.target);
+    }
+   
+    const container = document.querySelector('#container');
+  
+    function reset() {
+
+        const squares = document.querySelectorAll('.square'); // Define nodelist after each reset
+        squares.forEach(function(e) { // Nodelist is like an aray, iterate for each element
+            e.classList.remove('filled') 
+        })
+
+        squares.forEach(function(e) { 
+           e.parentNode.removeChild(e); //remove previous square
+        })
+
+        create_new();
+    }
+    // function to create new square
+    function create_new() {
+        grid_size = prompt('Enter new grid:')
+        new_square_side = 960 / grid_size; //new square side formula
+        let b = 0;
+        total_square = grid_size * grid_size //total number of box is equals to the square of of the number of square (hehe)
+        while (b < total_square) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        square.setAttribute('style', `border: 1px solid; box-sizing:border-box; height: ${new_square_side}px; width: ${new_square_side}px; float:left`); //don't forget the px at height/width
+        square.addEventListener("mouseover", fill)
+        container.appendChild(square);
+        b = b + 1;
+        }
     }
 
-    const container = document.querySelector('#container');
-
-    
+    let a = 0;
     while (a < 256) {
         const square = document.createElement('div');
         square.classList.add('square');
-        square.setAttribute('style', 'border: solid 1px; height: 40px; width: 40px; float:left');
+        square.setAttribute('style', 'border: 1px solid; box-sizing:border-box; height: 60px; width: 60px; float:left');
         square.addEventListener("mouseover", fill)
         container.appendChild(square);
         a = a + 1;
     }
 
-  
-   
-  
+    const reset_btn = document.querySelector('#reset'); 
+    reset_btn.addEventListener('click', reset); //add event lister to button
 
 </script>
 
